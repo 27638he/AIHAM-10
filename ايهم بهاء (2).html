@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حل المعادلات التي تحتوي متغير في طرفيها</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', sans-serif; }
+  
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+  
+  header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 40px 30px;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+  }
+  
+  .content {
+    padding: 40px 30px;
+  }
+  
+  section {
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    color: #4facfe;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4facfe;
+    display: inline-block;
+  }
+  
+  p {
+    line-height: 1.9;
+    font-size: 1.05em;
+    margin-bottom: 12px;
+  }
+  
+  .rule-box {
+    background: #f0f7ff;
+    border-right: 5px solid #4facfe;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+  
+  .rule-box h3 {
+    color: #2c5aa0;
+    margin-bottom: 10px;
+  }
+  
+  .steps {
+    background: #fff9e6;
+    border-right: 5px solid #ffc107;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+  }
+  
+  .steps ol {
+    padding-right: 25px;
+    line-height: 2;
+  }
+  
+  .example {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .example-title {
+    background: #4facfe;
+    color: white;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .equation {
+    background: #2c3e50;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+  }
+  
+  .solution {
+    line-height: 2.2;
+    font-size: 1.05em;
+  }
+  
+  .solution .eq {
+    font-family: 'Courier New', monospace;
+    background: #e8f4f8;
+    padding: 3px 10px;
+    border-radius: 5px;
+    direction: ltr;
+    display: inline-block;
+    font-weight: bold;
+  }
+  
+  .note {
+    background: #ffe8e8;
+    border-right: 5px solid #ff4757;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+  }
+  
+  .note strong {
+    color: #ff4757;
+  }
+  
+  .exercise {
+    background: #e8f5e9;
+    border-right: 5px solid #4caf50;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+  }
+  
+  .exercise ol {
+    padding-right: 25px;
+    line-height: 2.5;
+    font-size: 1.1em;
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+    text-align: right;
+  }
+  
+  .footer {
+    background: linear-gradient(135deg, #2c3e50, #4a6fa5);
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .footer-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+  }
+  
+  .footer-card {
+    background: rgba(255,255,255,0.1);
+    padding: 15px 25px;
+    border-radius: 12px;
+    min-width: 200px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  
+  .footer-card h4 {
+    color: #ffc107;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+  }
+  
+  .footer-card p {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.4em; }
+    .content { padding: 25px 20px; }
+    .footer-info { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <header>
+    <h1>📐 حل المعادلات التي تحتوي متغير في طرفيها</h1>
+    <p>درس رياضيات — شرح مبسّط مع أمثلة وتمارين</p>
+  </header>
+  
+  <div class="content">
+    
+    <!-- المقدمة -->
+    <section>
+      <h2>🔹 مقدمة عن الدرس</h2>
+      <p>
+        في الدروس السابقة تعلمنا حل المعادلات التي يكون فيها المتغير في طرف واحد فقط.
+        أما في هذا الدرس، سنتعلم كيف نحل معادلات يوجد فيها <strong>المتغير في كلا الطرفين</strong>،
+        مثل: <span class="eq">5x + 3 = 2x + 12</span>
+      </p>
+      <p>
+        الهدف من الحل هو الوصول إلى قيمة المتغير <strong>x</strong> التي تجعل الطرفين متساويين.
+      </p>
+    </section>
+    
+    <!-- القاعدة -->
+    <section>
+      <h2>🔹 قاعدة الحل</h2>
+      <div class="rule-box">
+        <h3>💡 الفكرة الأساسية:</h3>
+        <p>1️⃣ نجمع حدود المتغير في طرف واحد (عادة الطرف الأيسر).</p>
+        <p>2️⃣ نجمع الأعداد الثابتة في الطرف الآخر.</p>
+        <p>3️⃣ نقسم الطرفين على معامل المتغير.</p>
+      </div>
+      
+      <div class="note">
+        <strong>⚠️ تذكّر:</strong>
+        عند نقل أي حد من طرف إلى آخر، <strong>تتغير إشارته</strong> (الموجب يصبح سالباً والعكس).
+      </div>
+    </section>
+    
+    <!-- الخطوات -->
+    <section>
+      <h2>🔹 خطوات الحل بالترتيب</h2>
+      <div class="steps">
+        <ol>
+          <li>تخلّص من الأقواس إن وُجدت (بالتوزيع).</li>
+          <li>اجمع حدود المتغير في طرف واحد.</li>
+          <li>اجمع الأعداد الثابتة في الطرف الآخر.</li>
+          <li>اقسم الطرفين على معامل المتغير.</li>
+          <li>تحقق من الحل بتعويضه في المعادلة الأصلية.</li>
+        </ol>
+      </div>
+    </section>
+    
+    <!-- مثال 1 -->
+    <section>
+      <h2>🔹 أمثلة محلولة</h2>
+      
+      <div class="example">
+        <span class="example-title">مثال 1</span>
+        <div class="equation">3x + 5 = x + 11</div>
+        <div class="solution">
+          <p><strong>الحل:</strong></p>
+          <p>① ننقل حدود المتغير إلى طرف واحد (نطرح x من الطرفين):</p>
+          <p><span class="eq">3x - x + 5 = 11</span></p>
+          <p>② ننقل الأعداد الثابتة (نطرح 5 من الطرفين):</p>
+          <p><span class="eq">2x = 11 - 5</span></p>
+          <p><span class="eq">2x = 6</span></p>
+          <p>③ نقسم الطرفين على 2:</p>
+          <p><span class="eq">x = 3</span></p>
+          <p>✅ <strong>التحقق:</strong> 3(3)+5 = 14 و 3+11 = 14 ✔</p>
+        </div>
+      </div>
+      
+      <div class="example">
+        <span class="example-title">مثال 2</span>
+        <div class="equation">5x - 4 = 2x + 8</div>
+        <div class="solution">
+          <p><strong>الحل:</strong></p>
+          <p>① نطرح 2x من الطرفين:</p>
+          <p><span class="eq">5x - 2x - 4 = 8</span></p>
+          <p><span class="eq">3x - 4 = 8</span></p>
+          <p>② نضيف 4 للطرفين:</p>
+          <p><span class="eq">3x = 12</span></p>
+          <p>③ نقسم على 3:</p>
+          <p><span class="eq">x = 4</span></p>
+          <p>✅ <strong>التحقق:</strong> 5(4)-4 = 16 و 2(4)+8 = 16 ✔</p>
+        </div>
+      </div>
+      
+      <div class="example">
+        <span class="example-title">مثال 3 (مع أقواس)</span>
+        <div class="equation">2(x + 3) = 4x - 2</div>
+        <div class="solution">
+          <p><strong>الحل:</strong></p>
+          <p>① نوزّع القوس:</p>
+          <p><span class="eq">2x + 6 = 4x - 2</span></p>
+          <p>② ننقل حدود المتغير لطرف والأعداد للطرف الآخر:</p>
+          <p><span class="eq">6 + 2 = 4x - 2x</span></p>
+          <p><span class="eq">8 = 2x</span></p>
+          <p>③ نقسم على 2:</p>
+          <p><span class="eq">x = 4</span></p>
+          <p>✅ <strong>التحقق:</strong> 2(4+3) = 14 و 4(4)-2 = 14 ✔</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- تمارين -->
+    <section>
+      <h2>🔹 تمارين للتطبيق</h2>
+      <div class="exercise">
+        <p><strong>حل المعادلات التالية:</strong></p>
+        <ol>
+          <li>4x + 7 = 2x + 15</li>
+          <li>6x - 3 = 3x + 9</li>
+          <li>3(x + 2) = 5x - 4</li>
+          <li>7x - 5 = 4x + 10</li>
+        </ol>
+      </div>
+    </section>
+    
+    <!-- الخلاصة -->
+    <section>
+      <h2>🔹 خلاصة الدرس</h2>
+      <div class="rule-box">
+        <p>✔️ نجمع حدود المتغير في طرف واحد.</p>
+        <p>✔️ نجمع الأعداد الثابتة في الطرف الآخر.</p>
+        <p>✔️ نقسم على معامل المتغير لإيجاد قيمته.</p>
+        <p>✔️ نتأكد من الحل بالتعويض في المعادلة الأصلية.</p>
+      </div>
+    </section>
+    
+  </div>
+  
+  <!-- التذييل -->
+  <footer class="footer">
+    <h3>📚 عمل الطالب</h3>
+    <div class="footer-info">
+      <div class="footer-card">
+        <h4>👨‍🎓 الطالب</h4>
+        <p>أيهم بهاء</p>
+      </div>
+      <div class="footer-card">
+        <h4>🏫 المدرسة</h4>
+        <p>متوسطة شراف</p>
+      </div>
+      <div class="footer-card">
+        <h4>👨‍🏫 المعلم</h4>
+        <p>الأستاذ سلطان</p>
+      </div>
+    </div>
+  </footer>
+  
+</div>
+
+</body>
+</html>
